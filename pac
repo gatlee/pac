@@ -138,9 +138,9 @@ def present(entries: List[dict]):
         padding = len(str(index + 1))
         if entry['outdated'] == False:
             """ if you wish a red background instead, change next line to `colorversion = CREDBG` """
-            colorversion = CRED
-        else:
             colorversion = CGREEN2
+        else:
+            colorversion = CRED
         print(f"{CBLACK}{CYELLOWBG}{index + 1}{CEND} {CVIOLET2}{entry['repo']}/{CEND}{CBOLD}{entry['package']}{CEND} {colorversion}{entry['version']}{CEND}", end='')
         if entry['group']:
             print(f" {entry['group']}", end='')
