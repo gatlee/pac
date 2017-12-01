@@ -82,6 +82,10 @@ def search(search_term: str) -> List[dict]:
             l = l[1].split(' ')
             entry['package'] = l[0]
             entry['version'] = l[1]
+            if l[2] == "<!>":
+               entry['outdated'] = True
+            else:
+               entry['outdated'] = False
             entry['votes'] = None
             entry['group'] = None
             entry['installed'] = None
@@ -127,10 +131,17 @@ def present(entries: List[dict]):
     CVIOLET2: str = '\33[95m'
     CYELLOWBG: str = '\33[43m'
     CYELLOWBG2: str = '\33[103m'
+    CRED: str = '\33[31m'
+    CREDBG: str = '\33[101m'
 
     for index, entry in enumerate(entries):
         padding = len(str(index + 1))
-        print(f"{CBLACK}{CYELLOWBG}{index + 1}{CEND} {CVIOLET2}{entry['repo']}/{CEND}{CBOLD}{entry['package']}{CEND} {CGREEN2}{entry['version']}{CEND}", end='')
+        if entry['outdated'] == False:
+            """ if you wish a red background instead, change next line to `colorversion = CREDBG` """
+            colorversion = CRED
+        else:
+            colorversion = CGREEN2
+        print(f"{CBLACK}{CYELLOWBG}{index + 1}{CEND} {CVIOLET2}{entry['repo']}/{CEND}{CBOLD}{entry['package']}{CEND} {colorversion}{entry['version']}{CEND}", end='')
         if entry['group']:
             print(f" {entry['group']}", end='')
         if entry['installed']:
@@ -229,4 +240,3 @@ if __name__ == '__main__':
             call('pacaur -Syu', shell=True)
         except KeyboardInterrupt:
             pass
-
