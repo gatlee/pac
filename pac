@@ -82,7 +82,7 @@ def search(search_term: str) -> List[dict]:
             l = l[1].split(' ')
             entry['package'] = l[0]
             entry['version'] = l[1]
-            if l[2] == "<!>":
+            if len(l) > 2 and l[2] == "<!>":
                entry['outdated'] = True
             else:
                entry['outdated'] = False
