@@ -149,7 +149,7 @@ def present(entries: List[dict]):
         if entry['votes']:
             print(f" {CBLACK}{CYELLOWBG2}{entry['votes']}{CEND}", end='')
         print(f"\n{' ' * len(str(index + 1))} {entry['description']}")
-    print(f'{CYELLOW2}==>{CEND} {CBOLD}Enter n° of packages to be installed (ex: 1 2 3 or 1-3){CEND}')
+    print(f'{CYELLOW2}==>{CEND} {CBOLD}Enter number of packages to be installed (ex: 1 2 3 or 1-3){CEND}')
     print(f'{CYELLOW2}==>{CEND} {CBOLD}-------------------------------------------------------{CEND}')
 
 
